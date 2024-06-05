@@ -1,48 +1,52 @@
 document.getElementById("grade-analyzer").addEventListener("click", (e) => {
-  let g = prompt("Enter in grades, separated by commas (no spaces)");
-  let grades = g.split(",").map(Number);
+	let g = prompt("Enter in grades, separated by commas (no spaces)");
+	let grades = g.split(",").map(Number);
 
-  console.log(JSON.stringify(gradeAnalyzer(grades), null, 4));
+	console.log(JSON.stringify(gradeAnalyzer(grades), null, 4));
+
+	const button = document.getElementById("grade-analyzer");
+
+	button.textContent = JSON.stringify(gradeAnalyzer(grades), null, 4);
 });
 
 const gradeAnalyzer = (grades) => {
-  let sum = 0;
+	let sum = 0;
 
-  for (i in grades) {
-    sum += grades[i];
-  }
+	for (i in grades) {
+		sum += grades[i];
+	}
 
-  let average = sum / grades.length;
+	let average = sum / grades.length;
 
-  let max = null;
+	let max = null;
 
-  for (i in grades) {
-    if (grades[i] > max) {
-      max = grades[i];
-    }
-  }
+	for (i in grades) {
+		if (grades[i] > max) {
+			max = grades[i];
+		}
+	}
 
-  let min = grades[0];
+	let min = grades[0];
 
-  for (i in grades) {
-    if (grades[i] < min) {
-      min = grades[i];
-    }
-  }
+	for (i in grades) {
+		if (grades[i] < min) {
+			min = grades[i];
+		}
+	}
 
-  let pass = false;
+	let pass = false;
 
-  if (average >= 60) {
-    pass = true;
-  }
+	if (average >= 60) {
+		pass = true;
+	}
 
-  const gradesObject = {
-    total: sum,
-    average: average,
-    highest: max,
-    lowest: min,
-    passing: pass,
-  };
+	const gradesObject = {
+		total: sum,
+		average: average,
+		highest: max,
+		lowest: min,
+		passing: pass,
+	};
 
-  return gradesObject;
+	return gradesObject;
 };
